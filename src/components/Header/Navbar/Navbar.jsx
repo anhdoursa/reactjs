@@ -1,15 +1,17 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import categoryApi from '../../../api/categoryApi';
 
 function Navbar() {
+  const [categories, setCategories] = useState([])
   useEffect(() => {
     const fetchCategories = async () => {
       const data = await categoryApi.getAll();
-      console.log(data);
+      setCategories(data)
     };
-    fetchCategories();
-  });
+    fetchCategories()
+  }, []);
+  console.log(categories)
   return (
     <div id="navbar">
       <ul>
@@ -22,6 +24,12 @@ function Navbar() {
         <li>
           <NavLink to="/cart">Cart</NavLink>
         </li>
+        {categories && categories.map(category => (
+          <li key={category.id}>
+            <NavLink to="/{category.searchTerm}">{category.name}</NavLink>
+          </li>
+        ))}
+        
       </ul>
     </div>
   );
