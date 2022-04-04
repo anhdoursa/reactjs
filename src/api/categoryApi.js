@@ -13,8 +13,8 @@ const categoryApi = {
     const url = 'http://localhost:3000/categories';
     return axiosClient.post(url, data);
   },
-  update(id, data) {
-    const url = 'http://localhost:3000/categories/' + id;
+  update(data) {
+    const url = 'http://localhost:3000/categories/';
     return axiosClient.patch(url, data);
   },
   remove(id) {

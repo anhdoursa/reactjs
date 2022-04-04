@@ -11,7 +11,6 @@ function Navbar() {
     };
     fetchCategories()
   }, []);
-  console.log(categories)
   return (
     <div id="navbar">
       <ul>
